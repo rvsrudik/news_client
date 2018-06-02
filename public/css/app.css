@@ -1,14 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);.login-block {
-  max-width: 400px;
-  width: 100%;
-  padding: 10px;
-}
-
-.login-block .btn {
-  width: calc(50% - 20px);
-}
-
-/*!
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);/*!
  * Bootstrap v4.1.1 (https://getbootstrap.com/)
  * Copyright 2011-2018 The Bootstrap Authors
  * Copyright 2011-2018 Twitter, Inc.
@@ -10425,5 +10415,25 @@ a.text-dark:focus {
   background-color: #fff;
   -webkit-box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
           box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.login-block {
+  max-width: 400px;
+  width: 100%;
+  padding: 10px;
+}
+
+.login-block .btn {
+  width: calc(50% - 20px);
+}
+
+.login-block .signup,
+.login-block .password2_block,
+.login-block .to_sign_in {
+  display: none;
+}
+
+.alert {
+  display: none;
 }
 

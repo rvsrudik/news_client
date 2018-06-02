@@ -13867,7 +13867,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(43);
+module.exports = __webpack_require__(44);
 
 
 /***/ }),
@@ -13882,8 +13882,9 @@ module.exports = __webpack_require__(43);
  */
 
 __webpack_require__(13);
+__webpack_require__(36);
 
-window.Vue = __webpack_require__(36);
+window.Vue = __webpack_require__(37);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -13891,7 +13892,7 @@ window.Vue = __webpack_require__(36);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(39));
+Vue.component('example-component', __webpack_require__(40));
 
 var app = new Vue({
   el: '#app'
@@ -35922,6 +35923,99 @@ module.exports = function spread(callback) {
 
 /***/ }),
 /* 36 */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+    var login_btn = $('.signin');
+    var registr_btn = $('.signup');
+    var email;
+    var pass1;
+    var pass2;
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    function switch_to_login() {
+        $('.alert, .btn.signup, .password2_block, .to_sign_in').hide();
+        $('.to_sign_up, .btn.signin').fadeIn();
+    }
+
+    function switch_to_registration() {
+        $('.alert, .btn.signin, .to_sign_up').hide();
+        $('.btn.signup, .password2_block, .to_sign_in').fadeIn();
+    }
+
+    $('.to_sign_in').on('click', function () {
+        switch_to_login();
+    });
+
+    $('.to_sign_up').on('click', function () {
+        switch_to_registration();
+    });
+
+    function display_error(msg) {
+        $('.alert').hide();
+        $('.alert-danger .description').html(msg);
+        $('.alert-danger').fadeIn();
+    }
+
+    function display_succes(msg) {
+        $('.alert').hide();
+        $('.alert-success .description').html(msg);
+        $('.alert-success').fadeIn();
+    }
+
+    function get_inputs() {
+        email = $('#auth_email').val();
+        pass1 = $('#auth_pass1').val();
+    }
+
+    login_btn.on('click', function () {
+        alert('login');
+    });
+
+    function validate_registration() {
+        if (email === "" || pass1 === "" || pass2 === "") {
+            display_error("Please, fill all fields.");
+            return 0;
+        }
+
+        if (pass1 !== pass2) {
+            display_error("Passwords are different.");
+            return 0;
+        }
+
+        return 1;
+    }
+
+    registr_btn.on('click', function (e) {
+        e.preventDefault();
+
+        get_inputs();
+        pass2 = $('#auth_pass2').val();
+
+        if (!validate_registration()) {
+            return;
+        }
+
+        $.post("registration", { email: email, password: pass1 }).done(function (data) {
+            var server_answer = jQuery.parseJSON(data);
+
+            if (server_answer.status === "fail") {
+                display_error(server_answer.description);
+            } else {
+                switch_to_login();
+                display_succes(server_answer.description);
+            }
+        });
+    });
+});
+
+/***/ }),
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -46884,10 +46978,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(37).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(38).setImmediate))
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -46943,7 +47037,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(38);
+__webpack_require__(39);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -46957,7 +47051,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -47150,15 +47244,15 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(6)))
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(40)
+var normalizeComponent = __webpack_require__(41)
 /* script */
-var __vue_script__ = __webpack_require__(41)
+var __vue_script__ = __webpack_require__(42)
 /* template */
-var __vue_template__ = __webpack_require__(42)
+var __vue_template__ = __webpack_require__(43)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47197,7 +47291,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -47306,7 +47400,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47335,7 +47429,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47378,7 +47472,7 @@ if (false) {
 }
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

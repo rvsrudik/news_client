@@ -18,3 +18,11 @@ Route::get('/', function () {
 Route::get('auth', function () {
 	return view('login');
 });
+
+
+Route::get('auth2','AuthController@new_user1');
+
+
+
+Route::post('registration','AuthController@registration');
+
