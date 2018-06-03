@@ -17,14 +17,15 @@ class CreateUsersTable extends Migration
 			$table->increments('id');
 			$table->string('email');
 			$table->string('password');
-			$table->string('name')->nullable();;
-			$table->string('lastname')->nullable();;
-			$table->string('country')->nullable();;
-			$table->string('city')->nullable();;
-			$table->string('phone')->nullable();;
-			$table->date('birthday')->nullable();;
-			$table->json('news_sources')->nullable();;
+			$table->string('name')->nullable();
+			$table->string('lastname')->nullable();
+			$table->string('country')->nullable();
+			$table->string('city')->nullable();
+			$table->string('phone')->nullable();
+			$table->date('birthday')->nullable();
+			$table->json('news_sources')->nullable();
 			$table->boolean('confirmed')->default(0);
+			$table->string('key');
 			$table->timestamps();
 		});
     }

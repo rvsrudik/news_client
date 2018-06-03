@@ -10435,5 +10435,7 @@ a.text-dark:focus {
 
 .alert {
   display: none;
+  position: fixed;
+  width: 100%;
 }
 
