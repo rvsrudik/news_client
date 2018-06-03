@@ -11,29 +11,32 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+
+
+Route::group(['middleware' => 'checkStatus'], function () {
+	Route::get('/', function () {
+		return view('welcome');
+	});
+
+
 });
-
-
-Route::get('mail', function () {
-
-	Mail::to("intrudenko@gmail.com")->send(new App\Mail\RegistrationConfirm('1', '12', '23'), ['name'=> 'vitalii', 'email' => 'rvsdf@sdf.com', 'key' => 'asdasdasdas']);
-
-});
-
-
 
 
 Route::get('auth', function () {
 	return view('login');
-});
+})->name('auth')->middleware('checkLogged');
+
+Route::get('set_account', function () {
+	return 'setting account page';
+})->middleware('filledAccount');
 
 
-Route::get('auth2','AuthController@new_user1');
 
+Route::get('/confirm/{email}/key/{key}', 'AuthController@activation');
 
 
 Route::post('registration','AuthController@registration');
+Route::post('login','AuthController@login');
 
-Route::get('/confirm/{email}/key/{key}', 'AuthController@activation');
+

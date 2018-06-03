@@ -35973,8 +35973,28 @@ $(document).ready(function () {
         pass1 = $('#auth_pass1').val();
     }
 
-    login_btn.on('click', function () {
-        alert('login');
+    login_btn.on('click', function (e) {
+        e.preventDefault();
+        get_inputs();
+
+        if (email === "" || pass1 === "") {
+            display_error("Please, fill all fields.");
+            return 0;
+        }
+
+        $.post("login", { email: email, password: pass1 }).done(function (data) {
+            var server_answer = jQuery.parseJSON(data);
+
+            console.log(server_answer);
+            if (server_answer.status === "fail") {
+                display_error(server_answer.description);
+            } else {
+                console.log('succes');
+                window.location.href = "/";
+
+                // display_succes(server_answer.description);
+            }
+        });
     });
 
     function validate_registration() {

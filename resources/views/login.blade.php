@@ -14,6 +14,12 @@
 </head>
 <body>
 
+@if (Request::get('msg') === "activated")
+    <div class="alert alert-success d-block">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <strong>Your account was activated. You can log in.</strong>
+    </div>
+@endif
 <div class="alert alert-success">
     <strong>Success!</strong> <span class="description"></span>
 </div>

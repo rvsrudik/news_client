@@ -7,6 +7,7 @@ use App\Users;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 
 use Illuminate\Support\Facades\Mail;
@@ -26,6 +27,7 @@ class AuthController extends Controller
 		$user = new  Users;
 
 		$user->email = $email;
+
 		$user->password = Hash::make($pass);
 		$user->key = $key;
 
@@ -47,6 +49,40 @@ class AuthController extends Controller
 		return 0;
 	}
 
+	private function try_login($email, $pass) {
+		$user_id = Users::where(['email' => $email, 'password' => $pass])->value('id');
+
+		if (!$user_id) {
+			return 0;
+		} else {
+			return 1;
+		}
+
+	}
+
+	public function login( Request $request )
+	{
+		$answer = array("status" => "fail", "description" => "Unexpected error. Please, try later.");
+		$email = $request->post('email');
+		$pass = $request->post('password');
+
+
+
+		if (Auth::attempt(['email' => $email, 'password' => $pass, 'confirmed' => 1])) {
+			$answer['status'] = "settings";
+			$answer['description'] = "redirect to settings";
+			return json_encode($answer);
+		} else if (Auth::attempt(['email' => $email, 'password' => $pass, 'confirmed' => 2])) {
+			$answer['status'] = "login";
+			return json_encode($answer);
+		} else if (Auth::attempt(['email' => $email, 'password' => $pass, 'confirmed' => 0])) {
+			$answer['description'] = "Please, activate account first";
+			return json_encode($answer);
+		} else {
+			$answer['description'] = "Wrong email or password";
+			return json_encode($answer);
+		}
+	}
 
 
 	public function registration( Request $request )
@@ -82,16 +118,25 @@ class AuthController extends Controller
 	}
 
 
-	public function activation( Request $request ) {
-		$user = new  Users;
 
-//		print_r($request->email());
+	protected function activate_user($id) {
+		User::where('id', $id)->update(['confirmed' => 1, 'key' => ""]);
+	}
 
-//		$user = $user::update(['confirmed' => 1]);
 
-		$user->update(['confirmed' => 1, 'key = ""']);
 
-		return "your account activated";
+	public function activation( $email, $key ) {
+
+		$user_id = Users::where(['email' => $email, 'key' => $key])->value('id');
+
+		if ($user_id) {
+			$this->activate_user($user_id);
+		} else {
+			return abort(404);
+		}
+
+		return redirect()->route('auth', ['msg' => "activated"]);
+
 	}
 
 
