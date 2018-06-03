@@ -13883,6 +13883,7 @@ module.exports = __webpack_require__(44);
 
 __webpack_require__(13);
 __webpack_require__(36);
+__webpack_require__(49);
 
 window.Vue = __webpack_require__(37);
 
@@ -47496,6 +47497,45 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 45 */,
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+    var save_btn = $('.btn-success.saveuser');
+
+    var locations = {
+        "Ukraine": ["Kyiv", "Kharkiv", "Dnipro", "Lviv"],
+        "Poland": ["Warsaw", "Krakow", "Lodz", "Poznan"],
+        "Germany": ["Berlin", "Munich", "Köln", "Hamburg"] };
+
+    var current_country = "Ukraine";
+
+    $.each(locations, function (key) {
+        $("#set_country").append('<option>' + key + '</option>');
+    });
+
+    function change_cities(country) {
+        $("#set_city").empty();
+        $.each(locations[country], function (key, value) {
+            $("#set_city").append('<option>' + value + '</option>');
+        });
+    }
+    change_cities(current_country);
+
+    $("#set_country").change(function () {
+        current_country = $(this).val();
+        change_cities(current_country);
+    });
+
+    // save_btn.on('click', function () {
+    // });
+});
 
 /***/ })
 /******/ ]);

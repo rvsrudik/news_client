@@ -28,8 +28,13 @@ Route::get('auth', function () {
 })->name('auth')->middleware('checkLogged');
 
 Route::get('set_account', function () {
-	return 'setting account page';
+	return view('set_account');
 })->middleware('filledAccount');
+
+
+Route::post('set_account', 'UserInfoController@finishregistration')->middleware('filledAccount');
+
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 
 
 

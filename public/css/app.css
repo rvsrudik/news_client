@@ -10433,6 +10433,18 @@ a.text-dark:focus {
   display: none;
 }
 
+#set_account_page .row {
+  min-height: 100%;
+}
+
+#set_account_page a:visited,
+#set_account_page a:active,
+#set_account_page a,
+#set_account_page a:hover {
+  color: white;
+  text-decoration: none;
+}
+
 .alert {
   display: none;
   position: fixed;

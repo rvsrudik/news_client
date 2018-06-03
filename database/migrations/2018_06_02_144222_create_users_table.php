@@ -26,6 +26,7 @@ class CreateUsersTable extends Migration
 			$table->json('news_sources')->nullable();
 			$table->boolean('confirmed')->default(0);
 			$table->string('key');
+			$table->rememberToken();
 			$table->timestamps();
 		});
     }

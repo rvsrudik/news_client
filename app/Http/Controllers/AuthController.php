@@ -49,17 +49,6 @@ class AuthController extends Controller
 		return 0;
 	}
 
-	private function try_login($email, $pass) {
-		$user_id = Users::where(['email' => $email, 'password' => $pass])->value('id');
-
-		if (!$user_id) {
-			return 0;
-		} else {
-			return 1;
-		}
-
-	}
-
 	public function login( Request $request )
 	{
 		$answer = array("status" => "fail", "description" => "Unexpected error. Please, try later.");
