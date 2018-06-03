@@ -15,11 +15,17 @@
 
 
 Route::group(['middleware' => 'checkStatus'], function () {
+
 	Route::get('/', function () {
 		return view('welcome');
 	});
 
+	Route::get('/sources', function () {
+		return view('sources');
+	});
 
+	Route::post('update_source', 'UserInfoController@updateSources');
+	Route::post('get_sources', 'UserInfoController@getSources');
 });
 
 
@@ -33,6 +39,8 @@ Route::get('set_account', function () {
 
 
 Route::post('set_account', 'UserInfoController@finishregistration')->middleware('filledAccount');
+
+
 
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
 

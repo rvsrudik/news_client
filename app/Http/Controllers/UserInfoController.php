@@ -20,10 +20,27 @@ class UserInfoController extends Controller
 		$phone = $request->input('user_phone');
 		$birth = $request->input('user_bith');
 
-		Users::where('id', $id)->update(['name' => $name, 'lastname' => $lastname, 'country' => $country, 'city' => $city, 'phone' => $phone, 'birthday' => $birth, 'confirmed' => 2]);
+		Users::where('id', $id)->update(['name' => $name, 'lastname' => $lastname, 'country' => $country, 'city' => $city, 'phone' => $phone, 'birthday' => $birth, 'confirmed' => 2, 'news_sources' => '["google-news-uk", "cnn", "espn", "daily-mail", "mtv-news"]']);
 
 
-		return redirect()->route('/');
+		return redirect('/');
+	}
 
+	public function updateSources(Request $request) {
+		$id = Auth::id();
+
+		$json_sources = json_encode($request->post('sources'));
+
+		Users::where('id', $id)->update(['news_sources' => $json_sources]);
+
+		return "succes";
+	}
+
+	public function getSources() {
+		$id = Auth::id();
+
+		$json_sources = Users::where('id', $id)->value('news_sources');
+
+		return $json_sources;
 	}
 }
