@@ -84,6 +84,19 @@ $(document).ready(function () {
         }
     });
 
+    function display_error(msg) {
+        $('.alert').hide();
+        $('.alert-danger .description').html(msg);
+        $('.alert-danger').fadeIn();
+    }
+
+    function display_succes(msg) {
+
+        $('.alert').hide();
+        $('.alert-success .description').html(msg);
+        $('.alert-success').fadeIn();
+    }
+
     var apiKey = '600b1a5d21a245d0ba6dc3e3a2c07120';
     var sources_tab = [];
 
@@ -104,7 +117,13 @@ $(document).ready(function () {
     $('.source-save-btn').on('click', function () {
         console.log(sources_tab);
 
-        $.post("/update_source", { sources: sources_tab }).done(function (data) {});
+        $.post("/update_source", { sources: sources_tab }).done(function (data) {
+            if (data === "succes") {
+                display_succes("Source list was updated.");
+            } else {
+                display_error("Unexpected error. Please, try again later.");
+            }
+        });
     });
 
     function get_sources() {
@@ -116,8 +135,7 @@ $(document).ready(function () {
             var selected_list = jQuery.parseJSON(data);
 
             $.each(selected_list, function (key, value) {
-                console.log(value);
-
+                // console.log(value);
                 $("[source_id=" + value + "]").addClass('btn-success');
             });
 

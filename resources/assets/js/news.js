@@ -11,6 +11,7 @@ $( document ).ready(function() {
     var sources = '';
     var news_page = 1;
     var current_reading_news = 0;
+    var news_counter = -1;
 
 
     function get_sources() {
@@ -53,7 +54,9 @@ $( document ).ready(function() {
 
 
     $('.next-news').on('click', function () {
-       detail_news(current_reading_news + 1);
+        if (current_reading_news < news_counter) {
+            detail_news(current_reading_news + 1);
+        }
     });
 
     $('.prev-news').on('click', function () {
@@ -75,8 +78,9 @@ $( document ).ready(function() {
             $.each( result['articles'], function( key, value ) {
                 // console.log(value);
                 news_tab.push(value);
+                news_counter++;
 
-                $('.news-block').append(' <div onclick="detail_news(' +key * news_page +')" news_n="' + key * news_page+ '" data-toggle="modal" type=""   data-target="#myModal" class="news-item card d-flex">\n' +
+                $('.news-block').append(' <div onclick="detail_news(' + news_counter +')" news_n="' + news_counter+ '" data-toggle="modal" type=""   data-target="#myModal" class="news-item card d-flex">\n' +
                     // '                                    <div class="img" style="background-image: url(' + value.urlToImage + ')">\n' +
                     // '                                    </div>\n' +
                     '\n' +

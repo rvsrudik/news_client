@@ -39,6 +39,7 @@ class UserInfoController extends Controller
 	public function getSources() {
 		$id = Auth::id();
 
+
 		$json_sources = Users::where('id', $id)->value('news_sources');
 
 		return $json_sources;

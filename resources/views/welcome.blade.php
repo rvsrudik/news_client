@@ -58,7 +58,7 @@
                         <button type="button" class="btn btn-info next-news">Next</button>
                     </div>
 
-                    <button type="button" class="btn btn-default modal-close" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn modal-close" data-dismiss="modal">Close</button>
                 </div>
             </div>
 

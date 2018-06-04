@@ -10466,6 +10466,8 @@ a.text-dark:focus {
   margin-top: 10px;
   margin-bottom: 0;
   padding-bottom: 0;
+  padding-top: 0;
+  background: none;
 }
 
 .modal-body {

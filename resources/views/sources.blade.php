@@ -23,6 +23,15 @@
 <body>
 
 
+<div class="alert alert-success position-relative">
+    <strong>Success!</strong> <span class="description"></span>
+</div>
+
+
+<div class="alert alert-danger position-relative">
+    <strong>Error!</strong> <span class="description"></span>
+</div>
+
 
 @include('includes.nav')
 

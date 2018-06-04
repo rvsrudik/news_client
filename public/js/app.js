@@ -13884,6 +13884,7 @@ module.exports = __webpack_require__(45);
 __webpack_require__(13);
 __webpack_require__(36);
 __webpack_require__(37);
+__webpack_require__(56);
 window.Vue = __webpack_require__(38);
 
 /**
@@ -36040,6 +36041,9 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     var save_btn = $('.btn-success.saveuser');
+    var input_country = $('#set_country');
+    var input_city = $('#set_city');
+    var set_flag = 0;
 
     var locations = {
         "Ukraine": ["Kyiv", "Kharkiv", "Dnipro", "Lviv"],
@@ -36052,21 +36056,29 @@ $(document).ready(function () {
         $("#set_country").append('<option>' + key + '</option>');
     });
 
+    if (input_country.attr('data-selected') !== "") {
+        current_country = input_country.attr('data-selected');
+        input_country.val(current_country);
+    }
+
     function change_cities(country) {
-        $("#set_city").empty();
+        input_city.empty();
         $.each(locations[country], function (key, value) {
-            $("#set_city").append('<option>' + value + '</option>');
+            input_city.append('<option>' + value + '</option>');
         });
+
+        if (input_city.attr('data-selected') !== "" && !set_flag) {
+            var user_city = input_city.attr('data-selected');
+            input_city.val(user_city);
+            set_flag = 1;
+        }
     }
     change_cities(current_country);
 
-    $("#set_country").change(function () {
+    input_country.change(function () {
         current_country = $(this).val();
         change_cities(current_country);
     });
-
-    // save_btn.on('click', function () {
-    // });
 });
 
 /***/ }),
@@ -47531,6 +47543,70 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 46 */,
+/* 47 */,
+/* 48 */,
+/* 49 */,
+/* 50 */,
+/* 51 */,
+/* 52 */,
+/* 53 */,
+/* 54 */,
+/* 55 */,
+/* 56 */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+    var save_btn = $('.profile-save-btn');
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    function display_error(msg) {
+        $('.alert').hide();
+        $('.alert-danger .description').html(msg);
+        $('.alert-danger').fadeIn();
+    }
+
+    function display_succes(msg) {
+
+        $('.alert').hide();
+        $('.alert-success .description').html(msg);
+        $('.alert-success').fadeIn();
+    }
+
+    save_btn.on('click', function () {
+
+        $.post("profile", {
+            email: $('#profile_email').val(),
+            password1: $('#profile_pass1').val(),
+            password2: $('#profile_pass2').val(),
+            name: $('#profile_name').val(),
+            lastname: $('#profile_last_name').val(),
+            country: $('#set_country').val(),
+            city: $('#set_city').val(),
+            phone: $('#profile_phone').val(),
+            birth: $('#profile_birthday').val(),
+            pic: $('#photo').attr('data-image')
+
+        }).done(function (data) {
+            var server_answer = jQuery.parseJSON(data);
+
+            // console.log(server_answer);
+            console.log(data);
+            if (server_answer.status === "fail") {
+                display_error(server_answer.description);
+            } else {
+                display_succes(server_answer.description);
+            }
+        });
+    });
+});
 
 /***/ })
 /******/ ]);

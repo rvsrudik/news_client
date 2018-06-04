@@ -20,6 +20,8 @@
         <strong>Your account was activated. You can log in.</strong>
     </div>
 @endif
+
+
 <div class="alert alert-success">
     <strong>Success!</strong> <span class="description"></span>
 </div>
@@ -28,6 +30,8 @@
 <div class="alert alert-danger">
     <strong>Error!</strong> <span class="description"></span>
 </div>
+
+
 
 
 <div class="container">

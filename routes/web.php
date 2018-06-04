@@ -24,6 +24,13 @@ Route::group(['middleware' => 'checkStatus'], function () {
 		return view('sources');
 	});
 
+	Route::get('/profile', 'ProfileController@show');
+	Route::post('/profile', 'ProfileController@updateProfile');
+
+
+	Route::post('/upload', 'UploadController@upload');
+
+
 	Route::post('update_source', 'UserInfoController@updateSources');
 	Route::post('get_sources', 'UserInfoController@getSources');
 });
