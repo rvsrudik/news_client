@@ -150,7 +150,7 @@
 
 
                     <div class="user-avatar-block">
-                        <div id="photo"  @if ($pic !== "") style="background-image: url( {{ $pic}} )" data-image="{{ $pic }}" @endif  ></div>
+                        <div id="photo"  @if ($pic !== NULL) style="background-image: url( {{ $pic}} )" data-image="{{ $pic }}" @endif  ></div>
                         <input id="fileinput" type="file" class="booth-capture-button" accept="image/gif, image/jpeg, image/png" onchange="readURL(this);"/>
                     </div>
 

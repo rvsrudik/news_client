@@ -124,6 +124,8 @@ class AuthController extends Controller
 			return abort(404);
 		}
 
+//		return redirect('/logout');
+
 		return redirect()->route('auth', ['msg' => "activated"]);
 
 	}
