@@ -41,7 +41,6 @@ $( document ).ready(function() {
     };
 
     $('.source-save-btn').on('click', function () {
-       console.log(sources_tab);
 
         $.post( "/update_source", { sources: sources_tab })
             .done(function( data ) {

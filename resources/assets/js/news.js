@@ -70,27 +70,15 @@ $( document ).ready(function() {
 
 
         data.then(function(result) {
-            // news_tab.push(result['articles']);
-            // console.log(news_tab);
-            // console.log(result['articles']);
-
 
             $.each( result['articles'], function( key, value ) {
-                // console.log(value);
                 news_tab.push(value);
                 news_counter++;
 
                 $('.news-block').append(' <div onclick="detail_news(' + news_counter +')" news_n="' + news_counter+ '" data-toggle="modal" type=""   data-target="#myModal" class="news-item card d-flex">\n' +
-                    // '                                    <div class="img" style="background-image: url(' + value.urlToImage + ')">\n' +
-                    // '                                    </div>\n' +
-                    '\n' +
                     '                                    <div class="news-info">\n' +
                     '                                        <div class="title">' + value.title + '</div>\n' +
-                    // '                                        <div class="description">' + value.description + '</div>\n' +
-                    '\n' +
                     '                                        <div class="add-info">\n' +
-                    // '                                            <div class="news-source">' + value.source['name'] + '</div>\n' +
-                    // '                                            <div class="publication">' + value.publishedAt + '</div>\n' +
                     '                                        </div>\n' +
                     '                                    </div>\n' +
                     '                            </div>');

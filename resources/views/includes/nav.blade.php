@@ -3,7 +3,7 @@
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
         <a href="/">News</a>
         <a href="/sources">Sources</a>
-        <a href="#">People</a>
+        <a href="/people">People</a>
         <a href="/profile">Profile</a>
         <a href="/logout">Logout</a>
     </div>

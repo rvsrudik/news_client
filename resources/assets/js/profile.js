@@ -55,8 +55,6 @@ $( document ).ready(function() {
             .done(function( data ) {
                 var server_answer = jQuery.parseJSON( data );
 
-                // console.log(server_answer);
-                console.log(data);
                 if (server_answer.status === "fail") {
                     display_error(server_answer.description);
                 } else  {

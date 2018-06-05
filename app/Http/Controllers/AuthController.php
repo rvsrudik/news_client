@@ -94,12 +94,23 @@ class AuthController extends Controller
 			return (json_encode($answer));
 		}
 
+
+
+
+		try{
+			Mail::to($email)->send(new RegistrationConfirm($email, $key));
+
+		}
+		catch(\Exception $e){
+			$answer['description'] = "Sending activation link failed. Please check your mail or try again later.";
+			return (json_encode($answer));
+
+		}
+
 		if ($this->new_user($email, $pass, $key)) {
 			$answer['status'] = "success";
 			$answer['description'] = "User was successfully created. Please activate your account.";
 
-
-			Mail::to($email)->send(new RegistrationConfirm($email, $key));
 			return (json_encode($answer));
 		}
 

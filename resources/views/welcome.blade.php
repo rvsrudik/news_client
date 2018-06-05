@@ -27,7 +27,7 @@
 
     <!-- Modal -->
     <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog  modal-dialog-centered">
 
             <!-- Modal content-->
             <div class="modal-content">
@@ -53,12 +53,13 @@
                 <div class="modal-footer">
 
                     <div class="top-buttons d-flex">
-                        <button type="button" class="btn btn-info prev-news">Prev</button>
+                        <button type="button" class="btn btn-primary prev-news"> < </button>
                         <a class="source-link" target="_blank" href=""><button type="button" class="btn btn-success">Read from source</button></a>
-                        <button type="button" class="btn btn-info next-news">Next</button>
+                        <button type="button" class="btn btn-primary next-news"> > </button>
+                        <button type="button" class="btn modal-close" data-dismiss="modal">Close</button>
+
                     </div>
 
-                    <button type="button" class="btn modal-close" data-dismiss="modal">Close</button>
                 </div>
             </div>
 

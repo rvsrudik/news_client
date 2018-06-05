@@ -65,11 +65,9 @@ $( document ).ready(function() {
             .done(function( data ) {
                 var server_answer = jQuery.parseJSON( data );
 
-                console.log(server_answer);
                 if (server_answer.status === "fail") {
                     display_error(server_answer.description);
                 } else  {
-                    console.log('succes');
                     window.location.href = "/";
 
                     // display_succes(server_answer.description);

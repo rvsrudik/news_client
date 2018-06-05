@@ -9,6 +9,8 @@ require('./bootstrap');
 require('./login');
 require('./set-account');
 require('./profile');
+require('./people');
+
 window.Vue = require('vue');
 
 /**

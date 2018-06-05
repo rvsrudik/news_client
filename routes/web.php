@@ -31,6 +31,10 @@ Route::group(['middleware' => 'checkStatus'], function () {
 	Route::post('/upload', 'UploadController@upload');
 
 
+	Route::get('/people', 'PeopleController@getUsers');
+
+
+
 	Route::post('update_source', 'UserInfoController@updateSources');
 	Route::post('get_sources', 'UserInfoController@getSources');
 });
