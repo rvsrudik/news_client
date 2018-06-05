@@ -13867,7 +13867,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(45);
+module.exports = __webpack_require__(46);
 
 
 /***/ }),
@@ -13884,8 +13884,8 @@ module.exports = __webpack_require__(45);
 __webpack_require__(13);
 __webpack_require__(36);
 __webpack_require__(37);
-__webpack_require__(56);
-window.Vue = __webpack_require__(38);
+__webpack_require__(38);
+window.Vue = __webpack_require__(39);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -13893,7 +13893,7 @@ window.Vue = __webpack_require__(38);
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', __webpack_require__(41));
+Vue.component('example-component', __webpack_require__(42));
 
 var app = new Vue({
   el: '#app'
@@ -36083,6 +36083,60 @@ $(document).ready(function () {
 
 /***/ }),
 /* 38 */
+/***/ (function(module, exports) {
+
+$(document).ready(function () {
+    var save_btn = $('.profile-save-btn');
+
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+
+    function display_error(msg) {
+        $('.alert').hide();
+        $('.alert-danger .description').html(msg);
+        $('.alert-danger').fadeIn();
+    }
+
+    function display_succes(msg) {
+
+        $('.alert').hide();
+        $('.alert-success .description').html(msg);
+        $('.alert-success').fadeIn();
+    }
+
+    save_btn.on('click', function () {
+
+        $.post("profile", {
+            email: $('#profile_email').val(),
+            password1: $('#profile_pass1').val(),
+            password2: $('#profile_pass2').val(),
+            name: $('#profile_name').val(),
+            lastname: $('#profile_last_name').val(),
+            country: $('#set_country').val(),
+            city: $('#set_city').val(),
+            phone: $('#profile_phone').val(),
+            birth: $('#profile_birthday').val(),
+            pic: $('#photo').attr('data-image')
+
+        }).done(function (data) {
+            var server_answer = jQuery.parseJSON(data);
+
+            // console.log(server_answer);
+            console.log(data);
+            if (server_answer.status === "fail") {
+                display_error(server_answer.description);
+            } else {
+                display_succes(server_answer.description);
+            }
+        });
+    });
+});
+
+/***/ }),
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -47045,10 +47099,10 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(39).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(40).setImmediate))
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -47104,7 +47158,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(40);
+__webpack_require__(41);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -47118,7 +47172,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1)))
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -47311,15 +47365,15 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(1), __webpack_require__(6)))
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(42)
+var normalizeComponent = __webpack_require__(43)
 /* script */
-var __vue_script__ = __webpack_require__(43)
+var __vue_script__ = __webpack_require__(44)
 /* template */
-var __vue_template__ = __webpack_require__(44)
+var __vue_template__ = __webpack_require__(45)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -47358,7 +47412,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -47467,7 +47521,7 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -47496,7 +47550,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -47539,74 +47593,10 @@ if (false) {
 }
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
-
-/***/ }),
-/* 46 */,
-/* 47 */,
-/* 48 */,
-/* 49 */,
-/* 50 */,
-/* 51 */,
-/* 52 */,
-/* 53 */,
-/* 54 */,
-/* 55 */,
-/* 56 */
-/***/ (function(module, exports) {
-
-$(document).ready(function () {
-    var save_btn = $('.profile-save-btn');
-
-    $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-    });
-
-    function display_error(msg) {
-        $('.alert').hide();
-        $('.alert-danger .description').html(msg);
-        $('.alert-danger').fadeIn();
-    }
-
-    function display_succes(msg) {
-
-        $('.alert').hide();
-        $('.alert-success .description').html(msg);
-        $('.alert-success').fadeIn();
-    }
-
-    save_btn.on('click', function () {
-
-        $.post("profile", {
-            email: $('#profile_email').val(),
-            password1: $('#profile_pass1').val(),
-            password2: $('#profile_pass2').val(),
-            name: $('#profile_name').val(),
-            lastname: $('#profile_last_name').val(),
-            country: $('#set_country').val(),
-            city: $('#set_city').val(),
-            phone: $('#profile_phone').val(),
-            birth: $('#profile_birthday').val(),
-            pic: $('#photo').attr('data-image')
-
-        }).done(function (data) {
-            var server_answer = jQuery.parseJSON(data);
-
-            // console.log(server_answer);
-            console.log(data);
-            if (server_answer.status === "fail") {
-                display_error(server_answer.description);
-            } else {
-                display_succes(server_answer.description);
-            }
-        });
-    });
-});
 
 /***/ })
 /******/ ]);

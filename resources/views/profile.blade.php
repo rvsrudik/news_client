@@ -117,7 +117,7 @@
 
 
 <div class="alert alert-danger">
-    <strong>Error!</strong> <span class="description"></span>
+    <strong>Error!<br></strong> <span class="description"></span>
 </div>
 
 @include('includes.nav')

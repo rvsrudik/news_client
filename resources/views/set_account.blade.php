@@ -45,12 +45,12 @@
 
             <div class="form-group country_block">
                 <label for="set_country">Country:</label>
-                <select class="form-control" name="user_country" id="set_country"></select>
+                <select class="form-control" name="user_country" required="required" id="set_country"></select>
             </div>
 
             <div class="form-group city_block">
                 <label for="set_city">City:</label>
-                <select class="form-control" name="user_city" id="set_city"></select>
+                <select class="form-control" name="user_city" required="required" id="set_city"></select>
             </div>
 
 
