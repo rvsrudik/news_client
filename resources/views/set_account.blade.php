@@ -10,6 +10,8 @@
 
     <script src="{{ mix('/js/app.js') }}"></script>
 
+    <title>Setting account</title>
+
 
 </head>
 <body id="set_account_page">

@@ -36107,6 +36107,22 @@ $(document).ready(function () {
         $('.alert-success').fadeIn();
     }
 
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                $('#falseinput').attr('src', e.target.result);
+                $('#photo').css('background-image', 'url(' + e.target.result + ')');
+                $('#photo').attr('data-image', e.target.result);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $('#fileinput').on('change', function () {
+        readURL(this);
+    });
+
     save_btn.on('click', function () {
 
         $.post("profile", {

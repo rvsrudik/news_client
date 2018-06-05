@@ -10,6 +10,8 @@
 
     <script src="{{ mix('/js/app.js') }}"></script>
 
+    <title>Authorisation</title>
+
 
 </head>
 <body>
